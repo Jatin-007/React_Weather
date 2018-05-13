@@ -1,40 +1,27 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-class SearchBar extends Component {
+export default class componentName extends Component {
     constructor(props){
         super(props);
 
-        this.state = {term: ''}; // initial value is empty
-        this.onInputChange = this.onInputChange.bind(this); // in this(searchBar component) find the onInputChange method and bind it with this
+        this.state= {term: ''}
+
+        this.onInputChange= this.onInputChange.bind(this); //bind this with this.onInputChange
     }
 
     onInputChange(event) {
+        console.log(event.target.value);
         this.setState({term: event.target.value});
     }
 
-    onFormSubmit(event){
-        event.preventDefault();
-
-        // need to add the weather data
-    } 
-
-    render () {
+    render() {
         return (
-            <div>
-                <form onSubmit= {this.onFormSubmit} className="input-group">
-                    <input 
-                        placeholder ="Get a five day forcast in your favourite cities"
-                        className="form-control"
-                        value = {this.state.term}
-                        onChange={this.onInputChange}
-                    />
-                    <span className="input-group-btn">
-                        <button type="submit" className="btn btn-secondary">Submit</button>
-                    </span>
-                </form>
-            </div>
+        <div>
+            <form className="input-group" onSubmit={this.onFormSubmit}>
+                <input placeholder="Search a 5-day forcast" className="form-control" value={this.state.term} onChange={this.onInputChange}/>
+                <button type="submit" className="btn btn-secondary">Search</button>
+            </form>
+        </div>
         );
     }
 }
-
-export default SearchBar;
